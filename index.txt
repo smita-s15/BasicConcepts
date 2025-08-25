@@ -1,0 +1,27 @@
+function calculate(a, b) {
+  const subtract = a - b;
+  const multiply = a * b;
+  const divide = a / b;
+
+  return {subtract, multiply, divide}
+}
+
+{subtract, multiply, divide} = calculate(4, 7);
+
+document.write("<p>Difference " + subtract + "</p>");
+document.write("<p>Product: " + multiply + "</p>");
+document.write("<p>Quotient " + divide + "</p>");
+</script>
+
+</body>
+</html>
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+function Car(props) {
+  return <h2>I am a {props.color} Car!</h2>;
+}
+
+const root = ReactDOM(document.getElementById('root'));
+root.render(<Car color="red"/>);

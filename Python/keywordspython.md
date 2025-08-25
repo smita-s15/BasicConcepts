@@ -1,184 +1,259 @@
-# Python Big Keywords & Key Concepts (with Meanings)
+# 🐍 Python Quick Reference Guide
 
-## 1. Core Python Language
+## 1️⃣ Core Python Concepts
 
 ### Data Types
 
-- **int** → Integer number (e.g., `5`, `-42`)
-- **float** → Decimal number (e.g., `3.14`)
-- **complex** → Number with real and imaginary parts (e.g., `3+4j`)
-- **str** → Text (string of characters)
-- **list** → Mutable ordered collection (e.g., `[1, 2, 3]`)
-- **tuple** → Immutable ordered collection (e.g., `(1, 2, 3)`)
-- **dict** → Key-value mapping (e.g., `{"a": 1}`)
-- **set** → Unordered unique values (e.g., `{1, 2, 3}`)
-- **frozenset** → Immutable set
-- **bool** → Boolean value `True` or `False`
-- **bytes** → Immutable sequence of bytes
-- **bytearray** → Mutable sequence of bytes
+| Type      | Mutable | Ordered   | Duplicates           | Example              |
+| --------- | ------- | --------- | -------------------- | -------------------- |
+| int       | ❌      | ✅        | ✅                   | `5`                  |
+| float     | ❌      | ✅        | ✅                   | `3.14`               |
+| complex   | ❌      | ✅        | ✅                   | `3+4j`               |
+| str       | ❌      | ✅        | ✅                   | `"hello"`            |
+| list      | ✅      | ✅        | ✅                   | `[1,2,3]`            |
+| tuple     | ❌      | ✅        | ✅                   | `(1,2,3)`            |
+| dict      | ✅      | ✅ (3.7+) | Keys: ❌, Values: ✅ | `{"a":1}`            |
+| set       | ✅      | ❌        | ❌                   | `{1,2,3}`            |
+| frozenset | ❌      | ❌        | ❌                   | `frozenset([1,2,3])` |
+| bytes     | ❌      | ✅        | ✅                   | `b"abc"`             |
+| bytearray | ✅      | ✅        | ✅                   | `bytearray(b"abc")`  |
+| bool      | ❌      | ✅        | ✅                   | `True` / `False`     |
 
-### Variables & Constants
+**Mnemonics:**
 
-- **Assignment** → Store a value in a variable (`x = 5`)
-- **Dynamic Typing** → Variable type is decided at runtime
-- **Unpacking** → Assign multiple values from a collection to variables (`a, b = [1, 2]`)
-
-### Operators
-
-- **Arithmetic** → `+`, `-`, `*`, `/`, `//`, `%`, `**`
-- **Comparison** → `==`, `!=`, `<`, `>`, `<=`, `>=`
-- **Logical** → `and`, `or`, `not`
-- **Bitwise** → `&`, `|`, `^`, `~`, `<<`, `>>`
-- **Membership** → `in`, `not in`
-- **Identity** → `is`, `is not`
-
-### Control Flow
-
-- **if / elif / else** → Conditional branching
-- **for** → Loop through an iterable
-- **while** → Loop while condition is true
-- **break** → Exit loop immediately
-- **continue** → Skip to the next loop iteration
-- **pass** → Do nothing (placeholder)
-
-### Functions
-
-- **def** → Define a function
-- **Parameters** → Variables inside function definition
-- **Return Values** → Send result back using `return`
-- **Default Arguments** → Parameters with default values (`def f(x=10)`)
-- **\*args** → Variable number of positional arguments
-- **\*\*kwargs** → Variable number of keyword arguments
-
-### Scope & Namespace
-
-- **global** → Use a variable from the global scope
-- **nonlocal** → Use variable from an enclosing scope (but not global)
-- **LEGB Rule** → Local → Enclosing → Global → Built-in
-
-### Exception Handling
-
-- **try** → Block of code to test for errors
-- **except** → Handle the error
-- **finally** → Always executed (cleanup)
-- **raise** → Manually raise an exception
-- **assert** → Debugging check, raises error if condition false
-
-### Imports & Modules
-
-- **import** → Bring in a module
-- **from ... import** → Import specific items from a module
-- **as** → Alias for a module or function
-- **packages** → Folder containing multiple modules
-- **\_\_init\_\_.py** → Marks a folder as a Python package
+- **Mutable:** L = List, D = Dict, S = Set, B = Bytearray
+- **Ordered:** Sequences (`list`, `tuple`, `str`, `dict`, `bytes`, `bytearray`, `range`)
+- **Unique:** Set family (`set`, `frozenset`, `dict keys`)
 
 ---
 
-## 2. Advanced Python Concepts
+## 2️⃣ Variables & Constants
 
-- **Decorators** → Functions that modify other functions/classes
-- **Generators** → Functions that yield values (`yield`) one at a time
-- **Generator Expressions** → `(x*x for x in range(5))`
-- **Iterators** → Objects with `__iter__()` and `__next__()` methods
-- **Comprehensions** → Short way to create collections: list, dict, set
-- **Context Managers** → Use `with` to manage resources automatically
-- **Metaclasses** → Classes for creating other classes
-- **Dunder Methods** → Special methods like `__init__`, `__str__`
-- **Data Classes** → Use `@dataclass` to auto-generate class methods
-- **Type Hinting** → Indicate variable/function parameter types (`List[str]`)
+- Assignment: `x = 5`
+- Dynamic Typing: Type decided at runtime
+- Unpacking: `a, b = [1, 2]`
 
 ---
 
-## 3. Object-Oriented Programming (OOP)
+## 3️⃣ Operators
 
-- **Classes** → Blueprints for objects
-- **Inheritance** → Child class gets properties of parent class
-- **Polymorphism** → Same function name works for different types
-- **Encapsulation** → Hide internal details using `_var` or `__var`
-- **Abstraction** → Define structure without implementation (`abc` module)
+### Arithmetic
 
----
+| Operator | Meaning        | Example | Result |
+| -------- | -------------- | ------- | ------ |
+| `+`      | Addition       | `5+3`   | `8`    |
+| `-`      | Subtraction    | `5-3`   | `2`    |
+| `*`      | Multiplication | `5*3`   | `15`   |
+| `/`      | Float Division | `5/2`   | `2.5`  |
+| `//`     | Floor Division | `5//2`  | `2`    |
+| `%`      | Modulus        | `5%2`   | `1`    |
+| `**`     | Exponent       | `2**3`  | `8`    |
 
-## 4. Python Standard Library Keywords
+### Comparison
 
-- **os** → Interact with the operating system
-- **sys** → Access system-specific parameters & functions
-- **datetime** → Date/time manipulation
-- **json** → Encode/decode JSON data
-- **collections** → Specialized container datatypes (`Counter`, `deque`)
-- **itertools** → Iteration helpers (`permutations`, `combinations`)
-- **functools** → Function tools (`reduce`, `lru_cache`)
-- **re** → Regular expression operations
-- **subprocess** → Run external commands
-- **math / statistics** → Mathematical functions
-- **logging** → Logging system events
+| Operator | Meaning          | Example | Result  |
+| -------- | ---------------- | ------- | ------- |
+| `==`     | Equal            | `5==5`  | `True`  |
+| `!=`     | Not equal        | `5!=3`  | `True`  |
+| `<`      | Less than        | `5<3`   | `False` |
+| `>`      | Greater than     | `5>3`   | `True`  |
+| `<=`     | Less or equal    | `5<=5`  | `True`  |
+| `>=`     | Greater or equal | `5>=7`  | `False` |
 
----
+### Logical
 
-## 5. Data & File Handling
+| Operator | Meaning           | Example           | Result  |
+| -------- | ----------------- | ----------------- | ------- |
+| `and`    | True if both True | `(5>3) and (2<4)` | `True`  |
+| `or`     | True if any True  | `(5>3) or (2>4)`  | `True`  |
+| `not`    | Negation          | `not (5>3)`       | `False` |
 
-- **open()** → Open a file
-- **read() / write()** → Read/write to file
-- **csv** → Work with CSV files
-- **pickle** → Serialize/deserialize Python objects
-- **sqlite3** → Built-in lightweight database
+### Bitwise
 
----
+| Operator | Meaning     | Example  | Result |     |     |
+| -------- | ----------- | -------- | ------ | --- | --- |
+| `&`      | AND         | `5 & 3`  | `1`    |     |     |
+| \`       | \`          | OR       | \`5    | 3\` | `7` |
+| `^`      | XOR         | `5 ^ 3`  | `6`    |     |     |
+| `~`      | NOT         | `~5`     | `-6`   |     |     |
+| `<<`     | Left Shift  | `5 << 1` | `10`   |     |     |
+| `>>`     | Right Shift | `5 >> 1` | `2`    |     |     |
 
-## 6. Web & API Development
+### Membership
 
-- **Flask / Django / FastAPI** → Web frameworks
-- **requests** → Make HTTP requests
-- **urllib** → URL handling
-- **JSON APIs** → Data exchange between systems
+| Operator | Meaning             | Example            | Result |
+| -------- | ------------------- | ------------------ | ------ |
+| `in`     | Exists in container | `'a' in 'cat'`     | `True` |
+| `not in` | Not exists          | `5 not in [1,2,3]` | `True` |
 
----
+### Identity
 
-## 7. Data Science & AI Keywords
-
-- **NumPy** → Numerical computing with arrays
-- **Pandas** → Data manipulation with DataFrames
-- **Matplotlib / Seaborn** → Data visualization
-- **Scikit-learn** → Machine learning algorithms
-- **PyTorch / TensorFlow** → Deep learning frameworks
-
----
-
-## 8. Concurrency & Parallelism
-
-- **threading** → Run multiple threads
-- **multiprocessing** → Run multiple processes
-- **async / await** → Asynchronous programming
-- **queue.Queue** → Thread-safe queue
+| Operator | Meaning          | Example                    | Result |
+| -------- | ---------------- | -------------------------- | ------ |
+| `is`     | Same object      | `a=[1]; b=a; a is b`       | `True` |
+| `is not` | Different object | `a=[1]; b=[1]; a is not b` | `True` |
 
 ---
 
-## 9. Best Practices
+## 4️⃣ Control Flow
 
-- **PEP 8** → Python style guide
-- **venv / pipenv** → Virtual environments
-- **pip** → Install packages
-- **requirements.txt** → Dependency list
-- **unittest / pytest** → Testing frameworks
+| Keyword            | Purpose               | Example                |
+| ------------------ | --------------------- | ---------------------- |
+| `if / elif / else` | Conditional branching | Grade decision         |
+| `for`              | Loop through items    | `for fruit in list:`   |
+| `while`            | Loop until condition  | `while x<5:`           |
+| `break`            | Exit loop             | Stop if condition      |
+| `continue`         | Skip iteration        | Skip unwanted items    |
+| `pass`             | Placeholder           | Empty function or loop |
 
 ---
 
-## 10. Key Python Concepts
+## 5️⃣ Functions
 
-- **Everything is an object** → All values are objects
-- **Dynamic Typing** → Types decided at runtime
-- **Duck Typing** → Type compatibility based on behavior
-- **Mutable vs Immutable** → Objects that can/can’t change
-- **Shallow vs Deep Copy** → Copy references vs actual data
-- **Pass-by-Object-Reference** → Arguments passed as references
-- **First-Class Functions** → Functions as variables/arguments
-- **Closures** → Inner functions remember outer scope
-- **Iterable vs Iterator** → Iterable can be looped, iterator generates items
-- **Interning** → Reusing small immutable objects for performance
-- **GIL** → Only one Python thread runs bytecode at a time
-- **Garbage Collection** → Auto memory cleanup
-- **EAFP vs LBYL** → Try/except vs checking before acting
-- **Unpacking** → Assign multiple values from collections
-- **String Formatting** → f-strings, `.format()`, `%` formatting
-- **Virtual Environment Isolation** → Isolate dependencies
-- **Modules & Packages** → Organize reusable code
+- Define: `def func_name(params):`
+- Return: `return value`
+- Default Args: `def f(x=10)`
+- Variable Args: `*args` → positional args, `**kwargs` → keyword args
+
+```python
+def add(*args): return sum(args)
+def greet(*args, **kwargs):
+    print(args)
+    print(kwargs)
+```
+
+---
+
+## 6️⃣ Scope & Namespace
+
+- LEGB Rule: Local → Enclosing → Global → Built-in
+- `global` → Access global variable
+- `nonlocal` → Access enclosing variable
+
+---
+
+## 7️⃣ Exception Handling
+
+| Keyword   | Purpose                  |
+| --------- | ------------------------ |
+| `try`     | Test block               |
+| `except`  | Handle errors            |
+| `finally` | Always execute           |
+| `raise`   | Raise exception manually |
+| `assert`  | Debug check              |
+
+---
+
+## 8️⃣ Imports & Modules
+
+- `import module`, `from module import item`, `as` → alias
+- `__init__.py` → marks package
+
+---
+
+## 9️⃣ Advanced Concepts
+
+- Decorators → Modify functions
+- Generators → `yield` values lazily
+- Comprehensions → `[x*x for x in range(5)]`
+- Context Managers → `with open() as f:`
+- Type Hinting → `def func(x: int) -> str:`
+- Iterators → `__iter__()`, `__next__()`
+- Metaclasses, Dunder Methods, Data Classes
+
+---
+
+## Python Methods
+
+| Method Type     | Decorator       | First Arg | Access Scope             | Example Use Case     |
+| --------------- | --------------- | --------- | ------------------------ | -------------------- |
+| Instance Method | (none)          | `self`    | Object attributes        | Dog actions (`bark`) |
+| Class Method    | `@classmethod`  | `cls`     | Class-level attributes   | Count objects        |
+| Static Method   | `@staticmethod` | None      | No object/class required | Utility functions    |
+
+## 🔟 Object-Oriented Programming
+
+| Concept       | Meaning                        |
+| ------------- | ------------------------------ |
+| Class         | Blueprint for objects          |
+| Inheritance   | Child gets parent properties   |
+| Polymorphism  | Same function, different types |
+| Encapsulation | `_var` or `__var`              |
+| Abstraction   | `abc` module                   |
+
+---
+
+| Feature            | Synchronous | Asynchronous (`asyncio`)  | Multithreading | Multiprocessing  |
+| ------------------ | ----------- | ------------------------- | -------------- | ---------------- |
+| Execution Model    | One by one  | Event loop (non-blocking) | Many threads   | Many processes   |
+| Best for           | Simple code | I/O-bound (APIs, DB)      | I/O-bound      | CPU-bound        |
+| Memory Sharing     | Single flow | Single flow               | Shared memory  | Separate memory  |
+| Speed (I/O tasks)  | Slow        | Fast                      | Fast           | Fast             |
+| Speed (CPU tasks)  | Normal      | Still single-threaded     | Blocked by GIL | True parallel    |
+| Example Frameworks | —           | FastAPI, aiohttp          | Flask, Django  | ML, NumPy, SciPy |
+
+## 1️⃣1️⃣ Common Python Libraries
+
+- `os`, `sys`, `datetime`, `json`
+- `collections`, `itertools`, `functools`
+- `re`, `subprocess`, `math`, `statistics`, `logging`
+
+---
+
+## 1️⃣2️⃣ File & Data Handling
+
+- `open()`, `read()`, `write()`, `csv`, `pickle`, `sqlite3`
+
+---
+
+## 1️⃣3️⃣ Web & API
+
+- `Flask`, `Django`, `FastAPI`, `requests`, `urllib`, JSON APIs
+
+---
+
+## 1️⃣4️⃣ Data Science & AI
+
+- `NumPy`, `Pandas`, `Matplotlib`, `Seaborn`, `Scikit-learn`, `PyTorch`, `TensorFlow`
+
+---
+
+## 1️⃣5️⃣ Concurrency
+
+- `threading`, `multiprocessing`, `async / await`, `queue.Queue`
+
+```python
+import threading, asyncio, queue
+
+def worker():
+    print('Thread running')
+
+t = threading.Thread(target=worker)
+t.start()
+
+async def hello():
+    print('Hello async')
+
+asyncio.run(hello())
+
+q = queue.Queue()
+q.put(10)
+print(q.get())  # 10
+```
+
+---
+
+## 1️⃣6️⃣ Best Practices
+
+- PEP8, venv/pipenv, pip, requirements.txt, unittest, pytest
+
+---
+
+## 1️⃣7️⃣ Key Python Concepts
+
+- Everything is an object, Dynamic & Duck Typing
+- Mutable vs Immutable, Shallow vs Deep Copy, Pass-by-reference
+- First-class functions & closures, Iterable vs Iterator
+- GIL & Garbage Collection, EAFP vs LBYL
+- String formatting: f-strings, `.format()`, `%`
+- Virtual environments & modular code
