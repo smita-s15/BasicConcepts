@@ -61,6 +61,7 @@
 - **Scope:** Block-scoped  
   Variables exist only within the nearest enclosing `{}` block (loops, if blocks, functions).
 
+
 - **Hoisting:** Yes, but with Temporal Dead Zone (TDZ)  
   Accessing a `let` variable before its declaration causes a ReferenceError.
 

@@ -28,6 +28,8 @@ function fizzbuzz(n) {
 fizzbuzz(15);
 console.log(fizbuzz);
 
+const variable=0;
+
 function fizzBuzz(n) {
   const result = [];
   for (let i = 1; i <= n; i++) {

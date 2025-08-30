@@ -126,9 +126,52 @@ def greet(*args, **kwargs):
 
 ## 6️⃣ Scope & Namespace
 
-- LEGB Rule: Local → Enclosing → Global → Built-in
-- `global` → Access global variable
-- `nonlocal` → Access enclosing variable
+# ⚡ Python LEGB Rule (Single Example)
+
+Python resolves variables in the order:  
+**Local → Enclosing → Global → Built-in**
+
+## 🔹 LEGB Rule
+
+- **Local (L)** → Variables inside the current function/block.
+- **Enclosing (E)** → Variables in the enclosing (outer) function(s).
+- **Global (G)** → Variables defined at the top level of the module (file).
+- **Built-in (B)** → Names preloaded by Python (e.g., `len`, `range`, `print`).
+
+---
+
+## 🔹 Example
+
+```python
+x = "Global X"   # Global
+
+def outer():
+    x = "Enclosing X"   # Enclosing
+
+    def inner():
+        x = "Local X"   # Local
+        print("1) Local:", x)  # Local wins
+
+    def inner_no_local():
+        print("2) Enclosing:", x)  # Found in enclosing scope
+
+    def inner_global():
+        global x
+        print("3) Global (before change):", x)  # Uses global
+        x = "Changed Global X"
+        print("3) Global (after change):", x)
+
+    def inner_builtin():
+        print("4) Built-in len:", len("hello"))  # Built-in
+
+    inner()
+    inner_no_local()
+    inner_global()
+    inner_builtin()
+
+outer()
+print("Outside:", x)  # Global modified
+```
 
 ---
 
@@ -165,11 +208,85 @@ def greet(*args, **kwargs):
 
 ## Python Methods
 
+# 🐍 Python Methods: Instance vs Class vs Static
+
+---
+
+## 📌 1. Instance Method
+
+- Default method type.
+- Takes `self` as the first argument (represents the object).
+- Used to access/modify **object attributes**.
+
+```python
+class Dog:
+    def __init__(self, name):
+        self.name = name
+
+    # Instance method
+    def bark(self):
+        return f"{self.name} is barking!"
+
+d = Dog("Bruno")
+print(d.bark())
+# Output: Bruno is barking!
+```
+
+---
+
+## 📌 2. Class Method
+
+- Declared with `@classmethod`.
+- Takes `cls` as the first argument (represents the **class itself**).
+- Used to access/modify **class-level data**.
+
+```python
+class Dog:
+    count = 0  # Class variable
+
+    def __init__(self, name):
+        self.name = name
+        Dog.count += 1
+
+    @classmethod
+    def get_count(cls):
+        return f"Total Dogs: {cls.count}"
+
+d1 = Dog("Bruno")
+d2 = Dog("Rocky")
+print(Dog.get_count())
+# Output: Total Dogs: 2
+```
+
+---
+
+## 📌 3. Static Method
+
+- Declared with `@staticmethod`.
+- No `self` or `cls`.
+- Behaves like a **normal function inside a class** (logical grouping).
+
+```python
+class MathUtils:
+    @staticmethod
+    def add(a, b):
+        return a + b
+
+print(MathUtils.add(5, 7))
+# Output: 12
+```
+
+---
+
+## 🔹 Quick Comparison
+
 | Method Type     | Decorator       | First Arg | Access Scope             | Example Use Case     |
 | --------------- | --------------- | --------- | ------------------------ | -------------------- |
 | Instance Method | (none)          | `self`    | Object attributes        | Dog actions (`bark`) |
 | Class Method    | `@classmethod`  | `cls`     | Class-level attributes   | Count objects        |
 | Static Method   | `@staticmethod` | None      | No object/class required | Utility functions    |
+
+---
 
 ## 🔟 Object-Oriented Programming
 
@@ -254,6 +371,136 @@ print(q.get())  # 10
 - Everything is an object, Dynamic & Duck Typing
 - Mutable vs Immutable, Shallow vs Deep Copy, Pass-by-reference
 - First-class functions & closures, Iterable vs Iterator
-- GIL & Garbage Collection, EAFP vs LBYL
+- Global Interpreter Lock (GIL) & Garbage Collection, EAFP vs LBYL
 - String formatting: f-strings, `.format()`, `%`
 - Virtual environments & modular code
+- Garbage Collection is the process by which Python automatically frees memory that is no longer in use, i.e., objects that are no longer referenced anywhere in your program.
+
+# 🐍 Python Copying: Shallow vs Deep Copy
+
+---
+
+## 🔹 What They Are
+
+- **Shallow Copy** → Creates a **new object**, but **does not create copies of nested objects**.
+  Changes in nested objects affect both original and copied object.
+
+- **Deep Copy** → Creates a **new object** and also **recursively copies all nested objects**.
+  Changes in nested objects **do not affect** the original object.
+
+---
+
+## 🔹 Example
+
+```python
+import copy
+
+# Original nested list
+original = [[1, 2], [3, 4]]
+
+# Shallow copy
+shallow = copy.copy(original)
+
+# Deep copy
+deep = copy.deepcopy(original)
+
+# Modify nested object
+original[0][0] = 99
+
+print("Original:", original)   # [[99, 2], [3, 4]]
+print("Shallow:", shallow)     # [[99, 2], [3, 4]] -> affected
+print("Deep:", deep)           # [[1, 2], [3, 4]]  -> unaffected
+```
+
+---
+
+## 🔹 Key Points
+
+| Feature                               | Shallow Copy             | Deep Copy                        |
+| ------------------------------------- | ------------------------ | -------------------------------- |
+| Copies top-level object               | ✅                       | ✅                               |
+| Copies nested objects                 | ❌                       | ✅                               |
+| Affected by changes in nested objects | ✅                       | ❌                               |
+| Use                                   | Fast, for simple objects | Safe, for nested/complex objects |
+
+---
+
+## 🔹 Summary
+
+- **Use `copy.copy()`** → Shallow copy.
+- **Use `copy.deepcopy()`** → Deep copy.
+- Remember: If your object contains nested structures (lists, dicts, objects), \*\*shallow copy may lead to unexpected m
+
+# ⚡ Python Error Handling Styles: EAFP vs LBYL
+
+---
+
+## 🔹 What They Mean
+
+Python programmers often follow **two styles** to handle potential errors:
+
+| Style    | Full Form                                 | Description                                                               | Example                                                          |
+| -------- | ----------------------------------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| **EAFP** | Easier to Ask Forgiveness than Permission | Try to do the operation directly and **handle exceptions** if they occur. | `try: value = my_dict['key'] except KeyError: value = None`      |
+| **LBYL** | Look Before You Leap                      | Check conditions **before performing the operation** to avoid exceptions. | `if 'key' in my_dict: value = my_dict['key'] else: value = None` |
+
+---
+
+## 🔹 Key Differences
+
+| Aspect      | EAFP                                                                        | LBYL                                               |
+| ----------- | --------------------------------------------------------------------------- | -------------------------------------------------- |
+| Approach    | Attempt first, handle errors if they happen                                 | Check first, then act                              |
+| Pythonic?   | ✅ Pythonic, preferred in Python                                            | ❌ Less Pythonic, more common in other languages   |
+| Performance | Often faster for normal cases; may be slower if exceptions occur frequently | Can be slower if checks are redundant              |
+| Use Case    | File operations, dictionary access, type conversion                         | Simple validations, avoiding exceptions altogether |
+
+---
+
+## 🔹 Examples
+
+### 1. EAFP (Pythonic way) Easier to Ask Forgiveness than Permission
+
+```python
+my_dict = {'a': 1}
+
+try:
+    value = my_dict['b']
+except KeyError:
+    value = 0
+
+print(value)  # 0
+```
+
+### 2. LBYL (Check first) Look Before You Leap
+
+```python
+my_dict = {'a': 1}
+
+if 'b' in my_dict:
+    value = my_dict['b']
+else:
+    value = 0
+
+print(value)  # 0
+```
+
+---
+
+### ✅ Takeaways
+
+- **EAFP**: “Ask forgiveness later” → rely on exceptions.
+- **LBYL**: “Check before you act” → rely on checks.
+- Python generally encourages **EAFP** because it’s clean, concise, and fits dynamic typing.
+
+| Mode   | Meaning      | Notes                                           |
+| ------ | ------------ | ----------------------------------------------- |
+| `"r"`  | Read         | Default, file must exist                        |
+| `"w"`  | Write        | Creates file if not exist, overwrites if exists |
+| `"a"`  | Append       | Adds content at the end, creates if not exist   |
+| `"rb"` | Read binary  | For images, pdf, etc.                           |
+| `"wb"` | Write binary | For binary files                                |
+| `"r+"` | Read & write | Must exist, cursor at start                     |
+| `"w+"` | Write & read | Overwrites file                                 |
+
+---
