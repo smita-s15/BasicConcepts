@@ -128,33 +128,33 @@ for (let char of string.toLowerCase()) {
 console.log("Vowels:", vowels);
 console.log("Consonants:", consonants);
 
-// let string ="koko"
-// let string1 ="koko"
+let string2 ="koko"
+let string1 ="koko"
 
-// // let nonRepeating=[]
+// let nonRepeating=[]
 
-// function anagram(){
-//     return string.split("").sort().join("") === string1.split("").sort().join("");
-// }
-// console.log(anagram())
+function anagram(){
+    return string2.split("").sort().join("") === string1.split("").sort().join("");
+}
+console.log(anagram())
 
-// for (let i =0; i<string.length; i++){
-//     char= string[i];
-//     if(string.indexOf(char) === string.lastIndexOf(char)){
-//         nonRepeating.push(char)
-//     }
-// }
-// console.log(nonRepeating)
+for (let i =0; i<string.length; i++){
+    char= string[i];
+    if(string.indexOf(char) === string.lastIndexOf(char)){
+        nonRepeating.push(char)
+    }
+}
+console.log(nonRepeating)
 
-// if (string === string.split("").reverse().join("")){
-//     console.log("palindrome")
-// }
-// else console.log("not palindorme")
+if (string === string.split("").reverse().join("")){
+    console.log("palindrome")
+}
+else console.log("not palindorme")
 
-// let reversedstring =""
+let reversedstring =""
 
-// for (let i= string.length -1; i >= 0; i--){
-//     reversedstring += string[i];
-// }
+for (let i= string.length -1; i >= 0; i--){
+    reversedstring += string[i];
+}
 
-// console.log(reversedstring,"reversedstring")
+console.log(reversedstring,"reversedstring")

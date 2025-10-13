@@ -10,14 +10,14 @@
 | float     | ❌      | ✅        | ✅                   | `3.14`               |
 | complex   | ❌      | ✅        | ✅                   | `3+4j`               |
 | str       | ❌      | ✅        | ✅                   | `"hello"`            |
-| list      | ✅      | ✅        | ✅                   | `[1,2,3]`            |
 | tuple     | ❌      | ✅        | ✅                   | `(1,2,3)`            |
-| dict      | ✅      | ✅ (3.7+) | Keys: ❌, Values: ✅ | `{"a":1}`            |
-| set       | ✅      | ❌        | ❌                   | `{1,2,3}`            |
-| frozenset | ❌      | ❌        | ❌                   | `frozenset([1,2,3])` |
 | bytes     | ❌      | ✅        | ✅                   | `b"abc"`             |
-| bytearray | ✅      | ✅        | ✅                   | `bytearray(b"abc")`  |
 | bool      | ❌      | ✅        | ✅                   | `True` / `False`     |
+| frozenset | ❌      | ❌        | ❌                   | `frozenset([1,2,3])` |
+| set       | ✅      | ❌        | ❌                   | `{1,2,3}`            |
+| dict      | ✅      | ✅ (3.7+) | Keys: ❌, Values: ✅ | `{"a":1}`            |
+| list      | ✅      | ✅        | ✅                   | `[1,2,3]`            |
+| bytearray | ✅      | ✅        | ✅                   | `bytearray(b"abc")`  |
 
 **Mnemonics:**
 
@@ -26,6 +26,25 @@
 - **Unique:** Set family (`set`, `frozenset`, `dict keys`)
 
 ---
+
+Iterators in Python
+Last Updated : 03 Sep, 2025
+An iterator in Python is an object used to traverse through all the elements of a collection (like lists, tuples or dictionaries) one element at a time. It follows the iterator protocol, which involves two key methods:
+
+**iter**(): Returns the iterator object itself.
+**next**(): Returns the next value from the sequence. Raises StopIteration when the sequence ends.
+Why do we need iterators?
+Here are some key benefits:
+
+Lazy Evaluation: Processes items only when needed, saving memory.
+Generator Integration: Pairs well with generators and functional tools.
+Stateful Traversal: Keeps track of where it left off.
+Uniform Looping: Same for loop works for lists, strings and more.
+Composable Logic: Easily build complex pipelines using tools like itertools.
+Built-in Iterator Example
+Let’s start with a simple example using a string. We will convert it into an iterator and fetch characters one by one:
+
+**iter**() (which returns the object itself) and **next**() (which returns the next item and raises StopIteration at the end).
 
 ## 2️⃣ Variables & Constants
 

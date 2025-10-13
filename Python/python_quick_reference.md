@@ -6,6 +6,8 @@
 
   ----------------------------------------------------------------------------
   Type        Mutable   Ordered   Duplicates            Example
+  frozenset   ❌        ❌        ❌                    `frozenset([1,2,3])`
+  tuple       ❌        ✅        ✅                    `(1,2,3)`
   ----------- --------- --------- --------------------- ----------------------
   int         ❌        ✅        ✅                    `5`
 
@@ -15,21 +17,17 @@
 
   str         ❌        ✅        ✅                    `"hello"`
 
-  list        ✅        ✅        ✅                    `[1,2,3]`
 
-  tuple       ❌        ✅        ✅                    `(1,2,3)`
-
-  dict        ✅        ✅ (3.7+) Keys: ❌, Values: ✅  `{"a":1}`
-
-  set         ✅        ❌        ❌                    `{1,2,3}`
-
-  frozenset   ❌        ❌        ❌                    `frozenset([1,2,3])`
 
   bytes       ❌        ✅        ✅                    `b"abc"`
 
-  bytearray   ✅        ✅        ✅                    `bytearray(b"abc")`
 
   bool        ❌        ✅        ✅                    `True` / `False`
+  set         ✅        ❌        ❌                    `{1,2,3}`
+  list        ✅        ✅        ✅                    `[1,2,3]`
+  bytearray   ✅        ✅        ✅                    `bytearray(b"abc")`
+  dict        ✅        ✅ (3.7+) Keys: ❌, Values: ✅  `{"a":1}`
+
   ----------------------------------------------------------------------------
 
 **Mnemonics:**\
