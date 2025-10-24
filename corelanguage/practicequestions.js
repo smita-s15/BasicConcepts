@@ -28,7 +28,7 @@ function fizzbuzz(n) {
 fizzbuzz(15);
 console.log(fizbuzz);
 
-const variable=0;
+const variable = 0;
 
 function fizzBuzz(n) {
   const result = [];
@@ -90,6 +90,25 @@ function reverseStringWord(string) {
     .join(" ");
   return reversedString;
 }
+function isPalindrome(str) {
+  const reversedStr = str.split("").reverse().join("");
+  return str === reversedStr;
+}
+
+function isPalindromeLoop(str) {
+  const len = str.length;
+  for (let i = 0; i < len / 2; i++) {
+    if (str[i] !== str[len - 1 - i]) {
+      return false; // Mismatch found, not a palindrome
+    }
+  }
+  return true; // No mismatches found, it's a palindrome
+}
+
+console.log(isPalindromeLoop("racecar")); // true
+console.log(isPalindromeLoop("world")); // false
+console.log(isPalindrome("madam")); // true
+console.log(isPalindrome("hello")); // false
 
 console.log(reverseStringWord(string));
 
@@ -128,33 +147,34 @@ for (let char of string.toLowerCase()) {
 console.log("Vowels:", vowels);
 console.log("Consonants:", consonants);
 
-let string2 ="koko"
-let string1 ="koko"
+let string2 = "koko";
+let string1 = "koko";
 
 // let nonRepeating=[]
 
-function anagram(){
-    return string2.split("").sort().join("") === string1.split("").sort().join("");
+function anagram() {
+  return (
+    string2.split("").sort().join("") === string1.split("").sort().join("")
+  );
 }
-console.log(anagram())
+console.log(anagram());
 
-for (let i =0; i<string.length; i++){
-    char= string[i];
-    if(string.indexOf(char) === string.lastIndexOf(char)){
-        nonRepeating.push(char)
-    }
+for (let i = 0; i < string.length; i++) {
+  char = string[i];
+  if (string.indexOf(char) === string.lastIndexOf(char)) {
+    nonRepeating.push(char);
+  }
 }
-console.log(nonRepeating)
+console.log(nonRepeating);
 
-if (string === string.split("").reverse().join("")){
-    console.log("palindrome")
+if (string === string.split("").reverse().join("")) {
+  console.log("palindrome");
+} else console.log("not palindorme");
+
+let reversedstring = "";
+
+for (let i = string.length - 1; i >= 0; i--) {
+  reversedstring += string[i];
 }
-else console.log("not palindorme")
 
-let reversedstring =""
-
-for (let i= string.length -1; i >= 0; i--){
-    reversedstring += string[i];
-}
-
-console.log(reversedstring,"reversedstring")
+console.log(reversedstring, "reversedstring");
